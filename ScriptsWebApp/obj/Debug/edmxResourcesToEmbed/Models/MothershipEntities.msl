@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MothershipModelStoreContainer" CdmEntityContainer="MothershipEntities">
+    <EntitySetMapping Name="Scripts">
+      <EntityTypeMapping TypeName="MothershipModel.Script">
+        <MappingFragment StoreEntitySet="Scripts">
+          <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+          <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+          <ScalarProperty Name="Field" ColumnName="Field" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

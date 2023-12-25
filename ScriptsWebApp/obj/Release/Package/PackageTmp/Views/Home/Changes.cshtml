@@ -1,0 +1,56 @@
+﻿@model ScriptsWebApp.Models.ChangeViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Check changes</title>
+</head>
+<body>
+    @if (Model.ScriptChanges != null)
+    { 
+       if (Model.ScriptChanges.Any())
+        { 
+
+            <h1>@Model.ScriptChanges.FirstOrDefault().ClientName1</h1>
+            <h1>@Model.ScriptChanges.FirstOrDefault().ClientName2</h1>
+            <table border="1" >
+                <tr>
+                    <td >Field</td>
+                    <td ><b>@Model.ScriptChanges.FirstOrDefault().ClientName1</b> Text</td>
+                    <td >Notes</td>
+                    <td ><b>@Model.ScriptChanges.FirstOrDefault().ClientName2</b> Text</td>
+                    <td >Notes</td>
+                </tr>
+            @foreach (var script in Model.ScriptChanges)
+            { 
+                <tr style="font-size:small">
+
+                    <td valign="top">@script.Field1</td>
+                    <td valign="top">@Html.Raw(script.Text1.Replace("\r", "<br/>"))</td>
+                    <td valign="top">@(script.Notes1 == null ? Html.Raw("&nbsp;") : Html.Raw(script.Notes1.Replace("\n", "<br/>")))</td>
+                    <td valign="top">@Html.Raw(script.Text2.Replace("\r", "<br/>"))</td>
+                    <td valign="top">@(script.Notes2 == null ? Html.Raw("&nbsp;") : Html.Raw(script.Notes2.Replace("\n", "<br/>")))</td>
+
+                </tr>
+            }
+            </table>
+        }
+        else
+        { 
+            <img src="~/Images/morpheus%20no%20changes.jpg" height="700" width="650" />
+        } 
+    }
+    else
+    {
+        <img src="~/Images/Picard%20you%20idiot.png" height="700" width="900"  />
+    }
+
+</body>
+</html>

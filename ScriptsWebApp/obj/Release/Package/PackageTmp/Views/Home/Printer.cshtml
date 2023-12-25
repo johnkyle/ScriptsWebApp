@@ -1,0 +1,58 @@
+﻿@model ScriptsWebApp.ViewModel.PrinterViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Printer</title>
+</head>
+<body>
+    @if (Model.Scripts.Any())
+    { 
+        <h1>@Model.ClientName</h1>
+        <table border="1" >
+            <tr>
+                <td >Field</td>
+                <td >Text</td>
+                <td >Notes</td>
+            </tr>
+        @foreach (var script in Model.Scripts)
+        { 
+            <tr style="font-size:small">
+
+                <td >@script.Field</td>
+                <td >@Html.Raw(script.Text.Replace("\r\n", "<br/>"))</td>
+                <td >@(script.Notes == null ? Html.Raw("&nbsp;") : Html.Raw(script.Notes.Replace("\n", "<br/>")))</td>
+
+            </tr>
+        }
+        </table>
+    }
+    else
+    { 
+                 <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" 
+                    codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0" 
+                    width=1000 height=700 id="intro"> 
+
+                  <param name="movie" value="~/Images/sonic-the-hedgehog.swf"> 
+
+                  <param name="quality" value="high" /> 
+
+                  <param name="bgcolor" value="#1C140D" /> 
+
+                  <embed src="~/Images/sonic-the-hedgehog.swf" quality="high" bgcolor="#1C140D"
+                      width=1000 height=700 name="intro" align="" 
+                      type="application/x-shockwave-flash" 
+                      pluginspage="http://www.macromedia.com/go/getflashplayer"> 
+                  </embed> 
+
+                </object>
+
+    }
+</body>
+</html>

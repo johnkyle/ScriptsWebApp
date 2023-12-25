@@ -1,0 +1,40 @@
+﻿@model IQueryable<ScriptsWebApp.Models.Script>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+            <p>
+               
+            </p>
+        </div>
+    </section>
+}
+
+<form method="get" id="txtClientname" draggable="false">
+    <input type="text" name="txtClientname" style="width:300px"/>
+    @*<select name="ddlTemplateName">
+        <option></option>
+    </select>*@
+    <button type="submit" name="btnViewScript">View Script</button>
+    <button type="submit" name="btnAddNewScript">Add new Script</button>
+    <button type="submit" name="btnSearch">Search for Script</button>
+
+    <hr />
+    <h2>Copy Script</h2>
+    <p>@ViewBag.CopyMessage</p>
+    <label>Old clientname <input type="text" name="txtOldClientName" style="width:300px" /></label>
+    <label>New clientname <input type="text" name="txtNewClientName" style="width:300px" /></label>
+   
+    <button type="submit" name="btnCopyScript">Copy Script</button>
+     <input type="checkbox" name ="chkOverWrite" /> Over write ClientName if exits.
+    <button type="submit" name="btnCheckChange">Check Changes</button>
+</form>
+
+<h3></h3>

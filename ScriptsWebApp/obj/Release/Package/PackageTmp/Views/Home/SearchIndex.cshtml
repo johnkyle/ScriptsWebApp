@@ -1,0 +1,25 @@
+﻿@model IEnumerable<string>
+
+@{
+    ViewBag.Title = "SearchIndex";
+}
+
+<h2>SearchIndex</h2>
+
+ @if (Model.Any())
+    {
+
+        foreach (var clientname in Model)
+    { 
+      <a href="~/Home/Script?txtClientname=@clientname">@clientname</a> <br/>
+
+    }
+ }
+
+    else 
+    {
+     <h1>Try again.</h1>
+      <img src="~/Images/fry%20not%20sure.jpg" height="480" width="500"/>
+       <h3>Unfortunately that search you entered nothing was found.</h3>
+ 
+ }

@@ -1,0 +1,116 @@
+﻿@model IQueryable<ScriptsWebApp.Models.Script>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>Edit the script at will.  Don't forget to save changes.</h1>
+            </hgroup>
+        </div>
+    </section>
+}
+
+   @if (Model.Any())
+    {
+ 
+<form method="post">
+    <h1>@Model.FirstOrDefault().ClientName</h1>
+    <h2>@ViewBag.Message</h2>
+    <button type="submit">Save Changes</button>
+    @Html.ActionLink("Printer Friendly","Printer",new{clientname=Model.FirstOrDefault().ClientName})
+    <table>
+        <tr >
+            <td style="font:large"  >Field</td>
+            <td>Text</td>
+            <td>Notes</td>
+        </tr>
+    @foreach (var script in Model)
+    { 
+        <tr>
+            <td >@script.Field</td>
+            <td><textarea rows="20" cols="65" name="Text@(script.Field)">@script.Text</textarea></td>
+            <td><textarea rows="8" cols="25" name="Notes@(script.Field)">@script.Notes</textarea></td>
+        </tr>
+    }
+    </table>
+    <button type="submit">Save Changes</button>
+   
+</form>
+<hr/>
+<h2> Use the fields below to add new fields.  Just be careful.  Its permanent.</h2>
+        using(Html.BeginForm("NewField", "Home", FormMethod.Post))
+{
+    
+    <Input type ="hidden" value ="@Model.FirstOrDefault().ClientName" name ="txtClientName">
+    <table>
+          <tr>
+            <td>Field</td>
+            <td>Text</td>
+            <td>Notes</td>
+          <tr>
+            <td><select id="ddlField" name="ddlField">
+                <option></option>
+                @foreach(var ss in (List<ScriptsWebApp.Models.ScriptSequence> )ViewBag.ScriptSequences)
+               {
+                     <option>@ss.Field</option>
+               }
+
+                 </select></td>
+            <td><textarea rows="20" cols="65"name="txtTextNew"></textarea></td>
+            <td><textarea rows="8" cols="25"name="txtNotesNew"></textarea></td>
+          </tr>
+    </table>
+    
+    <button id="btnAddNewField" type="submit">Add new Field</button>
+
+}
+      
+}
+   else
+   {
+       <h1>THESE ARE NOT THE DROIDS YOUR LOOKING FOR.</h1>
+       <img src="~/Images/looking%20for%20droids.gif" />
+       
+       <h3>Unfortunately that clientname you entered was not found.</h3>
+   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@section scripts{
+     <script>
+        $(function () {
+            $('#btnAddNewField').click(function () {
+                if ($('#ddlField').val() == '') {
+                    alert('You haven\'t chosen a field to add!');
+                    return false;
+                }
+
+                return confirm('Are you sure you want to add this Field?  Be sure to save changes first.');
+            });
+        });
+    </script>
+}
+
+  
